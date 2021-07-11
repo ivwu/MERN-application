@@ -17,15 +17,17 @@ async function assembleUserState(user) {
 }
 
 export const authenticateRoute = (app) => {
-  app.post("/authenticat", async (req, res) => {
+  console.log("in authenticate route");
+  app.post("/authenticate", async (req, res) => {
     let { username, password } = req.body;
     let db = await connectDB();
-    let collection = db.collections("users");
+    let collection = db.collection("users");
     let user = await collection.findOne({ name: username });
     if (!user) {
       return res.status(500).send("User not found");
     }
     // if have a user found
+    console.log("found user");
     let hash = md5(password);
     let passwordCorrect = hash === user.passwordHash;
     if (!passwordCorrect) {
