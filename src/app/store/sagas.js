@@ -4,6 +4,7 @@
 import { take, put, select } from "redux-saga/effects";
 import uuid from "uuid";
 import axios from "axios";
+import { history } from "./history";
 
 import * as mutations from "./mutations";
 
@@ -64,6 +65,10 @@ export function* userAuthenicationSaga() {
         throw new Error();
       }
       console.log("authenticate!", data);
+      yield put(mutations.setState(data.state));
+      yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED));
+
+      history.push("/dashboard");
     } catch (e) {
       console.log("cant auth");
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
