@@ -1,3 +1,6 @@
+// files with .mock extenstion indicate the file does not contain the true business logic
+// used to reduce complexity (eg does not depend on server)
+
 import { take, put, select } from "redux-saga/effects";
 
 import * as mutations from "./mutation";
