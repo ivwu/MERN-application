@@ -49,3 +49,20 @@ export function* taskModificationSaga() {
     });
   }
 }
+
+export function* userAuthenicationSaga() {
+  while (true) {
+    const { username, password } = yield take(
+      mutations.REQUEST_AUTHENTICATE_USER
+    );
+    try {
+      const { data } = axios.post(url + "/authenticate", username, password);
+      if (!data) {
+        throw new Error();
+      }
+    } catch {
+      console.log("cant auth");
+      yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
+    }
+  }
+}

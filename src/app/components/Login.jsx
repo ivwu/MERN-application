@@ -3,18 +3,21 @@ import {connect} from 'react-redux'
 
 import * as mutations from '../store/mutations'
 
-const LoginComponent = ({authenticateUser}) => (
+const LoginComponent = ({authenticateUser, authenticated}) => (
   <div>
     <h2>Please Log In</h2>
     <form onSubmit={authenticateUser}>
       <input type="text" placeholder="username" name="username" defaultValue="Dev"/>
       <input type="password" placeholder="password" name="password" defaultValue=""/>
+      {authenticated === mutations.NOT_AUTHENTICATED ? <p>Login Incorrect</p> : <></>}
       <button type="submit">Log In</button>
     </form>
   </div>
 )
 
-const mapStateToProps = state => state
+const mapStateToProps = ({session}) => ({
+  authenticated: session.authenticated
+})
 
 const mapDispatchToProps = (dispatch) => ({
   authenticateUser(e) {
