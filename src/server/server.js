@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { connectDB } from "./connect-db";
 import "./initialize-db";
+import { authenticateRoute } from "./authenticate";
 
 let port = 8000;
 const app = express();
@@ -15,6 +16,8 @@ app.get("/", (req, res) => {
 
 // lets us use POST requests
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
+
+authenticateRoute(app);
 
 // function that communicates with db to test POST requests for adding a new task
 export const addNewTask = async (task) => {
