@@ -9,9 +9,9 @@ const app = express();
 
 app.listen(port, console.log("server listening on port", port));
 
-// app.get("/", (req, res) => {
-//   res.send("hello world");
-// });
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 // lets us use POST requests
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
