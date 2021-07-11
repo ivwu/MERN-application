@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 const dotenv = require("dotenv");
 dotenv.config();
 
-const url = `mongodb+srv://admin:${process.env.DB_PASSWORD}@sei.ivp29.mongodb.net/myorganizer?retryWrites=true&w=majority`;
+const url = `mongodb+srv://admin:${process.env.DB_PASSWORD}@${process.env.DB_USERNAME}.ivp29.mongodb.net/myorganizer?retryWrites=true&w=majority`;
 let db = null;
 
 export async function connectDB() {
