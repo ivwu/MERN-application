@@ -3,7 +3,12 @@ import {connect} from 'react-redux'
 
 const LoginComponent = () => (
   <div>
-    Log In Here!
+    <h2>Please Log In</h2>
+    <form>
+      <input type="text" placeholder="username" name="username" defaultValue="Dev"/>
+      <input type="password" placeholder="password" name="password" defaultValue=""/>
+      <button type="submit">Log In</button>
+    </form>
   </div>
 )
 
