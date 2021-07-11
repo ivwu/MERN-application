@@ -25,8 +25,23 @@ export const store = createStore(
           ];
         case mutations.SET_TASK_COMPLETE:
           return tasks.map((task) => {
+            // changes status of completion if button is clicked for the task
             return task.id === action.taskID
               ? { ...task, isComplete: action.isComplete }
+              : task;
+          });
+        case mutations.SET_TASK_NAME:
+          return tasks.map((task) => {
+            // changes status of name if button is clicked for the name of task and change happened
+            return task.id === action.taskID
+              ? { ...task, name: action.name }
+              : task;
+          });
+        case mutations.SET_TASK_GROUP:
+          return tasks.map((task) => {
+            // changes status of group if button to change group
+            return task.id === action.taskID
+              ? { ...task, group: action.groupID }
               : task;
           });
       }
