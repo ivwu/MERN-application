@@ -26,6 +26,26 @@ export function* taskCreationSaga() {
         name: "New Task",
       },
     });
-    console.info("got response", res);
+    // console.info("got response", res);
+  }
+}
+
+export function* taskModificationSaga() {
+  while (true) {
+    // if any of name,group,complete are passed in then it will take that and run
+    // reducer is already listening to changes with the state so we are going to send a request to the server that informs it of the user action
+    const task = yield take([
+      mutations.SET_TASK_NAME,
+      mutations.SET_TASK_GROUP,
+      mutations.SET_TASK_COMPLETE,
+    ]);
+    axios.post(url + "/task/update", {
+      task: {
+        id: task.taskID,
+        group: task.groupID,
+        name: task.name,
+        isComplete: task.isComplete,
+      },
+    });
   }
 }

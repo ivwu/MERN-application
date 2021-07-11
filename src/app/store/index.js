@@ -63,5 +63,5 @@ export const store = createStore(
 );
 
 for (let saga in sagas) {
-  sagaMiddleware.run(sagas.taskCreationSaga);
+  sagaMiddleware.run(sagas[saga]);
 }
